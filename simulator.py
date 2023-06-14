@@ -243,9 +243,9 @@ def create_folder_structure(SNR_list):
                 Path('Data/dataset').joinpath(split, 'siren', subclass, 'SNR'+str(int(abs(SNR)))).mkdir(parents=True, exist_ok=True)
 
 def generate_data(batch_num,num_samples,dataset_split,event_class,sample_duration,sample_rate):
-    create_folder_structure(SNR_range)
     microphone_array = np.array([[0., 0., 1.]])
     SNR_range = [0, -5, -10, -15, -20, -25, -30]
+    create_folder_structure(SNR_range)
 
     simulator = Simulator(microphone_array=microphone_array,
                           sample_duration=sample_duration,
