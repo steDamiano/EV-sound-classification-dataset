@@ -1,0 +1,5 @@
+numpy
+librosa
+pyroadacoustics
+scipy
+shapely
