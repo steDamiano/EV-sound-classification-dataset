@@ -45,7 +45,7 @@ class Simulator:
             sample_duration: float = 1.0,
             sample_rate: int = 16000,
             silence_margin: float = 0.5,
-            dataset_split: str = 'train',
+            dataset_split: str = 'traindev',
             SNR_range: list = [0, -5, -10, -15, -20, -25, -30],
         ) -> None:
         self.microphone_array = microphone_array
@@ -218,7 +218,32 @@ class Simulator:
             signal = self._combine_signal_noise(source_signal, signal, SNR)
         return signal, label, input_file, SNR
 
+def create_folder_structure(SNR_list):
+    splits = ['traindev', 'test']
+
+    # Input files folder
+    input_files_classes = ['ambience', 'horn', 'siren', 'vehicle']
+    for split in splits:
+        for name in input_files_classes:
+            Path('Data/input_files').joinpath(split, name).mkdir(parents=True, exist_ok=True)
+
+    # Dataset folder
+    for split in splits:
+        # noise path
+        Path('Data/dataset').joinpath(split, 'noise/noise').mkdir(parents=True, exist_ok=True)
+
+        # horn path
+        for SNR in SNR_list:
+            Path('Data/dataset').joinpath(split, 'horn/horn', 'SNR'+str(int(abs(SNR)))).mkdir(parents=True, exist_ok=True)
+        
+        # siren path
+        subclasses = ['wail', 'yelp', 'hilo']
+        for subclass in subclasses:
+            for SNR in SNR_list:
+                Path('Data/dataset').joinpath(split, 'siren', subclass, 'SNR'+str(int(abs(SNR)))).mkdir(parents=True, exist_ok=True)
+
 def generate_data(batch_num,num_samples,dataset_split,event_class,sample_duration,sample_rate):
+    create_folder_structure(SNR_range)
     microphone_array = np.array([[0., 0., 1.]])
     SNR_range = [0, -5, -10, -15, -20, -25, -30]
 
@@ -246,7 +271,7 @@ if __name__=='__main__':
     argParser = argparse.ArgumentParser()
     argParser.add_argument('-j', '--job_number', type=int, default=103)
     argParser.add_argument('-n', '--num_samples', type=int, default=1)
-    argParser.add_argument('-s', '--dataset_split', type=str, default='train')
+    argParser.add_argument('-s', '--dataset_split', type=str, default='traindev')
     argParser.add_argument('-c', '--event_class', type=str, default='noise')
     argParser.add_argument('-t', '--sample_duration', type=float, default=1.0)
     argParser.add_argument('-f', '--sample_rate', type=int, default=16000)
