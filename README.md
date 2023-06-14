@@ -4,9 +4,9 @@ This repository contains the code for the data generation procedure proposed in 
 
 
 ## Description
-This respository contains the code to generate a dataset containing audio clips of emergency vehicle sounds for audio classification purpose. The synthetic data generation procedure is build on top of the *pyroadacoustics* [1,2] simulator, that is used to simulate acoustic propagation in a traffic scenario for both static and dynamic sound sources.
+This repository contains the code to generate a dataset containing audio clips of emergency vehicle sounds for audio classification purpose. The synthetic data generation procedure is build on top of the *pyroadacoustics* [1,2] simulator, that is used to simulate acoustic propagation in a traffic scenario for both static and dynamic sound sources.
 
-The acoustic scene, defined in `simulator.py`, contains a mixture of static and dynamic noise sources randomply located (and moving) within a circle with radius 100m, and one sound source emitting an emergency signal (i.e. either a car honking or a siren) moving on a random trajectory within the same area. The emergency sound and the background noise are summed with an SNR in the range $[-30, 0]\,\mathrm{dB}$.
+The acoustic scene, defined in `simulator.py`, contains a mixture of static and dynamic noise sources randomly located (and moving) within a circle with radius 100m, and one sound source emitting an emergency signal (i.e. either a car honking or a siren) moving on a random trajectory within the same area. The emergency sound and the background noise are summed with an SNR in the range $[-30, 0]\,\mathrm{dB}$.
 
 The repository contains three scripts:
 - `create_folder_structure.py` contains the code to generate the required folder in which the input and output files will be stores
@@ -32,7 +32,7 @@ To generate data store the samples to be used as input for the simulations in th
 - `num_samples`: number of samples to generate (default: 1)
 - `dataset_split`: can be `traindev` or `test` (default: traindev)
 - `event_class`: class of samples generated in current batch. Can be noise, horn, or siren (default: noise)
-- `sample_duration`: duration in seconds of each simulated datapoint (default: 1s)
+- `sample_duration`: duration in seconds of each simulated data point (default: 1s)
 - `sample_rate`: sample rate used in the simulations (default: 16000Hz)
 
 ## References
