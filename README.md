@@ -3,7 +3,7 @@ This repository contains the code for the data generation procedure proposed in 
 >S. Damiano, A. Guntoro and T. van Waterschoot, "Emergency Sound Identification for Automotive Applications Using a Small-Scale Convolutional Neural Network", 2023 (under review)
 
 ## Folder structure
-To correctly use the script, follow the pre-defined folder structure of the `Data/` directory.
+To correctly run the data generation, create the required folder structure by running `create_folder_structure.py` first.
 
 ### Input files
 Input audio clips can be divided into `traindev` and `test` folders to create two independent datasets:
