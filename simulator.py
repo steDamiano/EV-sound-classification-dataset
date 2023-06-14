@@ -269,7 +269,7 @@ def generate_data(batch_num,num_samples,dataset_split,event_class,sample_duratio
 if __name__=='__main__':
     import argparse
     argParser = argparse.ArgumentParser()
-    argParser.add_argument('-j', '--job_number', type=int, default=103)
+    argParser.add_argument('-j', '--job_number', type=int, default=0)
     argParser.add_argument('-n', '--num_samples', type=int, default=1)
     argParser.add_argument('-s', '--dataset_split', type=str, default='traindev')
     argParser.add_argument('-c', '--event_class', type=str, default='noise')
